@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 
-            <h1>Trash</h1>
+            <h1><i class="fa fa-fw fa-trash"></i> Trash</h1>
             @foreach ( $tasks as $task )
 
                 <ul class="list-group">

@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('name');
+            $table->string('task_name');
             //$table->timestamp('due_at')->nullable();
             $table->timestamp('completed_at')->nullable();
             $table->softDeletes();

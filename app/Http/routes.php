@@ -35,3 +35,8 @@ post('tasks/{id}/complete', ['as' => 'complete_task_path', 'uses' => 'TasksContr
 delete('tasks/{id}/delete', ['as' => 'delete_task_path', 'uses' => 'TasksController@destroy']);
 
 resource('tasks', 'TasksController', ['names' => ['create' => 'add_task_path', 'store' => 'store_task_path']]);
+
+// , 'middleware' => ['auth', 'verified', 'active', 'notBlocked']
+Route::group(['prefix' => 'api/v1/', 'namespace' => 'API'], function () {;
+    resource('tasks', 'TasksController');
+});

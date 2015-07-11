@@ -40,7 +40,7 @@ class ConstantsTableSeeder extends Seeder
         for ( $i=1; $i <=10; $i++ ) {
         Task::create([
             'user_id' => $faker->randomElement([1,2]),
-            'name' => $faker->realText(30)
+            'task_name' => $faker->realText(30)
         ]);
     }
     }
