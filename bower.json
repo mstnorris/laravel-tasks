@@ -1,0 +1,21 @@
+{
+  "name": "laravel-tasks",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mstnorris/laravel-tasks",
+  "authors": [
+    "Michael Norris <github@michaelnorris.co.uk>"
+  ],
+  "description": "Simple Laravel Task app built with Laravel 5.1",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.5",
+    "font-awesome-sass": "~4.3.1"
+  }
+}

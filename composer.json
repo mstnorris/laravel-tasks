@@ -7,7 +7,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "vinkla/hashids": "^2.0",
+        "barryvdh/laravel-ide-helper": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -38,7 +40,9 @@
             "php artisan clear-compiled"
         ],
         "post-update-cmd": [
-            "php artisan optimize"
+          "php artisan clear-compiled",
+          "php artisan ide-helper:generate",
+          "php artisan optimize"
         ],
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""

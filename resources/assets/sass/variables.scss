@@ -1,0 +1,22 @@
+$brand-primary: $flat-turquoise;
+$brand-success: $flat-peter-river;
+$brand-info: $flat-peter-river;
+$brand-warning: $flat-sunflower;
+$brand-danger: $flat-alizarin;
+
+$text-color: $flat-wet-asphalt;
+
+$navbar-default-bg: $flat-belize-hole;
+$body-bg: $flat-clouds;
+
+$navbar-default-color: $flat-clouds;
+$navbar-default-border: none;
+
+$navbar-default-link-color: $flat-clouds;
+$navbar-default-link-hover-color: lighten($navbar-default-link-color, 10%);
+$navbar-default-link-active-color: lighten($navbar-default-link-color, 10%);
+
+$navbar-default-brand-hover-color: lighten($navbar-default-link-color, 10%);
+
+$navbar-default-link-active-bg: $flat-peter-river;
+$navbar-default-link-hover-bg: $flat-peter-river;
