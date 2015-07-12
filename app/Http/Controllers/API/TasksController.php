@@ -21,7 +21,7 @@ class TasksController extends Controller
 
     public function index()
     {
-        return $this->repository->getAll();
+        return $this->repository->getRemaining();
     }
 
     public function show($id)
@@ -60,8 +60,8 @@ class TasksController extends Controller
         return $this->repository->completed();
     }
 
-    public function trash()
+    public function deleted()
     {
-        return $this->repository->trash();
+        return $this->repository->deleted();
     }
 }

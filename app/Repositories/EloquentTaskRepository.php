@@ -12,6 +12,11 @@ class EloquentTaskRepository implements TaskRepository
         return auth()->user()->tasks()->get();
     }
 
+    public function getRemaining()
+    {
+        return auth()->user()->tasks()->where('completed_at', null)->get();
+    }
+
     public function show($id)
     {
         return Task::find($id);
@@ -25,13 +30,44 @@ class EloquentTaskRepository implements TaskRepository
 
     }
 
-    public function trash()
+    public function complete(Request $request)
     {
-        return Task::onlyTrashed()->get();
+        $data = $request->all();
+
+        $task = Task::find($data->id);
+
+        $task->completed_at = Carbon::now();
+
+        $task->save();
+
+        return $task;
     }
 
     public function completed()
     {
         return Task::whereNotNull('completed_at')->get();
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+
+        Task::find($data->id)->destroy();
+
+        return;
+    }
+
+    public function deleted()
+    {
+        return Task::onlyTrashed()->get();
+    }
+
+    public function restore(Request $request)
+    {
+        $data = $request->all();
+
+        $task = Task::withTrashed()->find($data->id)->restore();
+
+        return $task;
     }
 }

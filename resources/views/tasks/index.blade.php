@@ -37,20 +37,21 @@
 
                     </div>
 
-                    <div class="alert alert-success animated fadeIn" v-if="submitted">Thanks!</div>
+                    {{--<div class="alert alert-success animated fadeIn" v-if="submitted">Thanks!</div>--}}
 
                 </form>
 
                 <hr/>
 
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-success" v-show="newTask.task_name">
-                        @{{ newTask.task_name }}
-                        <span class="badge">New</span>
-                    </li>
-                    <li class="list-group-item" v-repeat="tasks | filterBy newTask.task_name">
+                    {{--// | filterBy newTask.task_name--}}
+                    <li class="list-group-item" v-repeat="tasks">
                         @{{ task_name }}
                         {{--<span class="pull-right">Added @{{ task_name }} <i class="fa fa-fw fa-circle-thin"></i></span>--}}
+                    </li>
+                    <li class="list-group-item list-group-item-success" v-show="newTask.task_name">
+                        @{{ newTask.task_name }}
+                        <span class="badge alert-success">New</span>
                     </li>
                 </ul>
                 {{--<pre>@{{ $data | json }}</pre>--}}

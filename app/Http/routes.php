@@ -42,7 +42,10 @@ resource('tasks', 'TasksController', ['names' => ['create' => 'add_task_path', '
 
 // , 'middleware' => ['auth', 'verified', 'active', 'notBlocked']
 Route::group(['prefix' => 'api/v1/', 'namespace' => 'API'], function () {;
-    get('completed', ['as' => 'completed_path', 'uses' => 'TasksController@completed']);
-    get('trash', ['as' => 'deleted_path', 'uses' => 'TasksController@trash']);
+    get('tasks/completed', ['as' => 'completed_path', 'uses' => 'TasksController@completed']);
+    post('tasks/{id}/complete', ['as' => 'complete_task_path', 'uses' => 'TasksController@complete']);
+    get('tasks/deleted', ['as' => 'deleted_path', 'uses' => 'TasksController@deleted']);
+    delete('tasks/{id}/delete', ['as' => 'delete_task_path', 'uses' => 'TasksController@delete']);
+    post('tasks/{$id}/restore', ['as' => 'restore_task_path', 'uses' => 'TasksController@restore']);
     resource('tasks', 'TasksController');
 });
