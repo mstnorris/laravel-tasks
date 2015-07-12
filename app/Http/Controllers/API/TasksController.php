@@ -6,7 +6,6 @@ use App\Task;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTaskRequest;
 use App\Repositories\TaskRepository;
-use Vinkla\Hashids\Facades\Hashids;
 
 class TasksController extends Controller
 {
@@ -37,14 +36,22 @@ class TasksController extends Controller
 
     private function createTask(CreateTaskRequest $request)
     {
-        $task = Task::create([
-            'name' => $request->name()
+
+        //$task = Task::create([
+        //    'task_name' => $request->all()
+        //]);
+
+        $task = auth()->user()->tasks()->create([
+            'task_name' => $request->get('task_name')
         ]);
-        //$data              = $request->all();
-        //$client            = Task::create($data);
-        //$client->client_id = Hashids::connection('client_id')->encode($client->id);
-        //$client->save();
 
         return $task;
+
+        ////$data              = $request->all();
+        ////$client            = Task::create($data);
+        ////$client->client_id = Hashids::connection('client_id')->encode($client->id);
+        ////$client->save();
+        //
+        //return $task;
     }
 }

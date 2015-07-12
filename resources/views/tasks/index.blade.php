@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('header')
-    <meta id="token" name="token" value="{{ csrf_token() }}">
+    <meta id="token" name="token" value="{!! csrf_token() !!}">
 
     <style>
         i.complete:hover {

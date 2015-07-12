@@ -11,8 +11,8 @@ class Task extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name',
-        //'due_at',
+        'user_id',
+        'task_name',
         'completed_at',
         'deleted_at'
     ];
