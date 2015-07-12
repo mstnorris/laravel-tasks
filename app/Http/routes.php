@@ -38,5 +38,7 @@ resource('tasks', 'TasksController', ['names' => ['create' => 'add_task_path', '
 
 // , 'middleware' => ['auth', 'verified', 'active', 'notBlocked']
 Route::group(['prefix' => 'api/v1/', 'namespace' => 'API'], function () {;
+    get('completed', ['as' => 'completed_path', 'uses' => 'TasksController@completed']);
+    get('trash', ['as' => 'deleted_path', 'uses' => 'TasksController@trash']);
     resource('tasks', 'TasksController');
 });

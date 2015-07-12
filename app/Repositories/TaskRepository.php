@@ -9,4 +9,8 @@ interface TaskRepository
     public function show($id);
 
     public function store(Request $request);
+
+    public function trash();
+
+    public function completed();
 }

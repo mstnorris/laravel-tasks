@@ -7,7 +7,9 @@ class EloquentTaskRepository implements TaskRepository
 {
     public function getAll()
     {
-        return Task::with('user')->get();
+        //return Task::with('user')->get();
+
+        return auth()->user()->tasks()->get();
     }
 
     public function show($id)
@@ -21,5 +23,15 @@ class EloquentTaskRepository implements TaskRepository
 
         Task::create($data);
 
+    }
+
+    public function trash()
+    {
+        return Task::onlyTrashed()->get();
+    }
+
+    public function completed()
+    {
+        return Task::whereNotNull('completed_at')->get();
     }
 }

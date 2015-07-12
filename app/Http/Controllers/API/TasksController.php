@@ -54,4 +54,14 @@ class TasksController extends Controller
         //
         //return $task;
     }
+
+    public function completed()
+    {
+        return $this->repository->completed();
+    }
+
+    public function trash()
+    {
+        return $this->repository->trash();
+    }
 }
