@@ -15,6 +15,10 @@ get('/', function () {
     return view('pages.about');
 });
 
+get('all', function() {
+    return view('tasks.all');
+});
+
 /*
  * Public Static Page Routes
  */

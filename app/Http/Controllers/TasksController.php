@@ -18,19 +18,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::latest()->get();
-
-        return view('tasks.index', compact('tasks'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-    return view('tasks.create');
+        return view('tasks.index');
     }
 
     /**

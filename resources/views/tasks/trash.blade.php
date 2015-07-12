@@ -50,7 +50,9 @@
                     </li>
                     <li class="list-group-item" v-repeat="tasks | filterBy newTask.task_name">
                         @{{ task_name }}
-                        <span class="pull-right"><i class="fa fa-fw fa-circle-thin"></i></span>
+                        <form method="POST" v-on="submit: onSubmitForm">
+                            <button class="btn btn-primary" v-attr="disabled: errors" type="submit"><i class="fa fa-fw fa-plus"></i></button>
+                        </form>
                     </li>
                 </ul>
                 {{--<pre>@{{ $data | json }}</pre>--}}

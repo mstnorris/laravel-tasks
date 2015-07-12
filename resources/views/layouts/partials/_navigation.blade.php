@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             @if ( auth()->check() )
             <ul class="nav navbar-nav">
-                <li><a href="/tasks/create"><i class="fa fa-fw fa-plus"></i> New</a></li>
+                <li><a href="/tasks"><i class="fa fa-fw fa-plus"></i> New</a></li>
                 <li><a href="/tasks"><i class="fa fa-fw fa-tasks"></i> All</a></li>
                 <li><a href="/completed"><i class="fa fa-fw fa-check"></i> Completed</a></li>
                 <li><a href="/trash"><i class="fa fa-fw fa-trash"></i> Trash</a></li>

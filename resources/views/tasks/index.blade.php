@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <input type="text" name="task_name" id="task_name" class="form-control"
-                                   v-model="newTask.task_name" placeholder="" autocomplete="off">
+                                   v-model="newTask.task_name" placeholder="" autocomplete="off" autofocus>
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" v-attr="disabled: errors" type="submit"><i class="fa fa-fw fa-plus"></i></button>
                             </span>
@@ -50,7 +50,7 @@
                     </li>
                     <li class="list-group-item" v-repeat="tasks | filterBy newTask.task_name">
                         @{{ task_name }}
-                        <span class="pull-right"><i class="fa fa-fw fa-circle-thin"></i></span>
+                        {{--<span class="pull-right">Added @{{ task_name }} <i class="fa fa-fw fa-circle-thin"></i></span>--}}
                     </li>
                 </ul>
                 {{--<pre>@{{ $data | json }}</pre>--}}

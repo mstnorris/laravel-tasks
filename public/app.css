@@ -1,0 +1,20 @@
+#tasks {
+    margin: 2em 0;
+}
+
+li button {
+    font-weight: bold;
+    background: none;
+    border: 0;
+    padding: 0;
+    float: right;
+    margin-left: 10px;
+}
+
+li button.complete {
+    color: #2ecc71;
+}
+
+li button.delete {
+    color: #e74c3c;
+}
