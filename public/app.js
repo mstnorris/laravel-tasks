@@ -65,6 +65,10 @@ new Vue({
 
         removeTask: function(task) {
             this.tasks.$remove(task);
+        },
+
+        deleteAll: function() {
+            this.tasks = null;
         }
     }
 

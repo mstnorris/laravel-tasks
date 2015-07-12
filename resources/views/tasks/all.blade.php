@@ -21,9 +21,15 @@
                            class="form-control"
                            placeholder="I need to...">
                             <span class="input-group-btn">
-                                <button class="btn btn-primary" v-attr="disabled: errors" type="submit"><i class="fa fa-fw fa-plus"></i></button>
+                                <button class="btn btn-success" v-attr="disabled: errors" type="submit" data-toggle="tooltip" data-placement="top" title="Add a New Task"><i class="fa fa-fw fa-plus"></i></button>
+
+                                    <button type="button" class="btn btn-primary" v-show="remaining.length" v-on="click: completeAll" data-toggle="tooltip" data-placement="top" title="Mark all Tasks as Completed"><i class="fa fa-fw fa-check"></i></button>
+                                    <button type="button" class="btn btn-danger" v-show="tasks.length" v-on="click: deleteAll" data-toggle="tooltip" data-placement="top" title="Delete all Tasks"><i class="fa fa-fw fa-trash"></i></button>
+
                             </span>
+
                 </div>
+
                 {{----}}
                 {{--<div class="form-group">--}}
                     {{--<input v-model="newTask"--}}
@@ -54,8 +60,9 @@
                         >
                         <span v-on="dblclick: editTask(task)">@{{ task.body }}</span>
 
-                        <button v-on="click: removeTask(task)" class="delete"><i class="fa fa-fw fa-trash"></i></button>
-                        <button v-on="click: toggleTaskCompletion(task)" class="complete"><i class="fa fa-fw fa-check"></i></button>
+                        <button v-on="click: removeTask(task)" class="delete" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><i class="fa fa-fw fa-trash"></i></button>
+
+                        <button v-on="click: toggleTaskCompletion(task)" class="complete" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><i class="fa fa-fw fa-check"></i></button>
                     </li>
                 </ol>
             </div>
@@ -63,7 +70,11 @@
 
             <!-- The List of Completed Tasks -->
             <div v-if="completions.length">
-                <h1><i class="fa fa-fw fa-check"></i> Completed (@{{ completions.length }})</h1>
+                <h1><i class="fa fa-fw fa-check"></i> Completed (@{{ completions.length }})
+                    <div class="pull-right">
+                        <button v-on="click: clearCompleted" class="btn btn-danger">Clear Completed</button>
+                    </div>
+                </h1>
 
                 <ol class="list-group">
                     <li v-repeat="task: completions"
@@ -71,11 +82,11 @@
                         >
                         @{{ task.body }}
 
-                        <button v-on="click: toggleTaskCompletion(task)" class="delete"><i class="fa fa-fw fa-times"></i></button>
+                        <button v-on="click: toggleTaskCompletion(task)" class="undo"><i class="fa fa-fw fa-undo"></i></button>
                     </li>
                 </ol>
 
-                <button v-on="click: clearCompleted" class="btn btn-danger">Clear Completed</button>
+
             </div>
 
         </div>

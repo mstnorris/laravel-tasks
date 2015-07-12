@@ -18,3 +18,7 @@ li button.complete {
 li button.delete {
     color: #e74c3c;
 }
+
+li button.undo {
+    color: #3498db;
+}
