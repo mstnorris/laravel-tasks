@@ -31,12 +31,15 @@
                             Task Name:
                             <span class="error" v-if="! newTask.task_name">*</span>
                         </label>
-                        <input type="text" name="task_name" id="task_name" class="form-control"
-                               v-model="newTask.task_name">
-                    </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" v-attr="disabled: errors">Add Task</button>
+                        <div class="input-group">
+                            <input type="text" name="task_name" id="task_name" class="form-control"
+                                   v-model="newTask.task_name">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" v-attr="disabled: errors" type="submit">Add Task</button>
+                            </span>
+                        </div>
+
                     </div>
 
                     <div class="alert alert-success animated fadeIn" v-if="submitted">Thanks!</div>
@@ -45,20 +48,11 @@
 
                 <hr/>
 
-                <div class="form-group">
-                    <label for="task_filter">
-                        Filter Tasks Name:
-                    </label>
-                    <input type="text" name="task_filter" id="task_filter" v-model="task_filter" class="form-control">
-                </div>
-
-                <hr/>
-
                 <ul class="list-group">
                     <li class="list-group-item" v-show="newTask.task_name">
                         @{{ newTask.task_name }}
                     </li>
-                    <li class="list-group-item" v-repeat="tasks | filterBy task_filter">
+                    <li class="list-group-item" v-repeat="tasks | filterBy newTask.task_name">
                         @{{ task_name }}
                     </li>
                 </ul>
