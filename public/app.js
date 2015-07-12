@@ -1,3 +1,5 @@
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+
 new Vue({
 
     el: '#tasks',
@@ -5,7 +7,7 @@ new Vue({
     data: {
         tasks: [],
 
-        newTask: '',
+        //newTask: '',
 
         filters: {
             inProcess: function(task) {
@@ -15,7 +17,13 @@ new Vue({
             completed: function(task) {
                 return task.completed;
             }
-        }
+        },
+
+        newTask: {
+            task_name: ''
+        },
+
+        submitted: false
     },
 
     computed: {
@@ -25,7 +33,19 @@ new Vue({
 
         remaining: function() {
             return this.tasks.filter(this.filters.inProcess);
+        },
+
+        errors: function () {
+            for (var key in this.newTask) {
+                if (!this.newTask[key]) return true;
+            }
+
+            return false;
         }
+    },
+
+    ready: function () {
+        this.fetchTasks();
     },
 
     methods: {
@@ -69,6 +89,28 @@ new Vue({
 
         deleteAll: function() {
             this.tasks = null;
+        },
+
+        fetchTasks: function () {
+            this.$http.get('api/v1/tasks', function (tasks) {
+                this.$set('tasks', tasks);
+            })
+        },
+
+        onSubmitForm: function (e) {
+            e.preventDefault();
+
+            var task = this.newTask;
+
+            this.tasks.push(task);
+
+            this.newTask = {task_name: ''};
+
+            this.submitted = true;
+
+            task_name.focus();
+
+            this.$http.post('api/v1/tasks', task);
         }
     }
 

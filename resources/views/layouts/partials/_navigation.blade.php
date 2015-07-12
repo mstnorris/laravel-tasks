@@ -40,7 +40,7 @@
             </ul>
             @else
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/register"><i class="fa fa-fw fa-user-plus"></i> Register</a></li>
+                <li><a href="/register"><i class="fa fa-fw fa-user-plus"></i> Sign Up</a></li>
                 <li><a href="/login"><i class="fa fa-fw fa-sign-in"></i> Sign in</a></li>
             </ul>
             @endif
