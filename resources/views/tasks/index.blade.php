@@ -27,16 +27,11 @@
                 <form method="POST" v-on="submit: onSubmitForm">
 
                     <div class="form-group">
-                        <label for="task_name">
-                            Task Name:
-                            <span class="error" v-if="! newTask.task_name">*</span>
-                        </label>
-
                         <div class="input-group">
                             <input type="text" name="task_name" id="task_name" class="form-control"
-                                   v-model="newTask.task_name">
+                                   v-model="newTask.task_name" placeholder="" autocomplete="off">
                             <span class="input-group-btn">
-                                <button class="btn btn-primary" v-attr="disabled: errors" type="submit">Add Task</button>
+                                <button class="btn btn-primary" v-attr="disabled: errors" type="submit"><i class="fa fa-fw fa-plus"></i></button>
                             </span>
                         </div>
 
@@ -49,11 +44,13 @@
                 <hr/>
 
                 <ul class="list-group">
-                    <li class="list-group-item" v-show="newTask.task_name">
+                    <li class="list-group-item list-group-item-success" v-show="newTask.task_name">
                         @{{ newTask.task_name }}
+                        <span class="badge">New</span>
                     </li>
                     <li class="list-group-item" v-repeat="tasks | filterBy newTask.task_name">
                         @{{ task_name }}
+                        <span class="pull-right"><i class="fa fa-fw fa-circle-thin"></i></span>
                     </li>
                 </ul>
                 {{--<pre>@{{ $data | json }}</pre>--}}
