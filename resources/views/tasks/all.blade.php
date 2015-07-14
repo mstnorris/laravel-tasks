@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <input type="text" name="task_name" id="task_name" class="form-control"
-                                   v-model="newTask.task_name" placeholder="I need to..." autocomplete="off" autofocus>
+                                   v-model="newTask.task_name" placeholder="I need to..." autocomplete="off" autofocus minlength="3" required title="3 characters minimum">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" v-attr="disabled: errors" type="submit"><i class="fa fa-fw fa-plus"></i></button>
                             </span>
@@ -25,33 +25,10 @@
 
                     </div>
 
-                    <div class="alert alert-success animated fadeIn" v-if="submitted">Thanks!</div>
-
                 </form>
 
                 <button class="btn btn-success" v-attr="disabled: ! remaining" v-on="click: completeAll"><i class="fa fa-fw fa-check"></i> Complete all Tasks</button>
                 <button class="btn btn-danger" v-attr="disabled: ! remaining" v-on="click: deleteAll"><i class="fa fa-fw fa-trash"></i>Delete all Tasks</button>
-
-                <!-- The Form to Add a New Task -->
-                {{--<form v-on="submit: addTask">--}}
-                    {{--<div class="form-group">--}}
-                        {{--<input v-model="newTask"--}}
-                               {{--v-el="newTask"--}}
-                               {{--class="form-control"--}}
-                               {{--placeholder="I need to...">--}}
-                    {{--</div>--}}
-
-                    {{--<button class="btn btn-primary">--}}
-                        {{--Add Task--}}
-                    {{--</button>--}}
-
-                    {{--<button v-on="click: completeAll"--}}
-                            {{--class="btn btn-default"--}}
-                        {{-->--}}
-                        {{--Mark All As Completed?--}}
-                    {{--</button>--}}
-                {{--</form>--}}
-
 
                 <!-- The List of Todos -->
                 <div v-show="remaining.length">
@@ -129,6 +106,14 @@
             },
 
             computed: {
+                errors: function () {
+                    for (var key in this.newTask) {
+                        if (!this.newTask[key]) return true;
+                    }
+
+                    return false;
+                },
+
                 completions: function() {
                     return this.tasks.filter(this.filters.completed);
                 },
@@ -185,24 +170,23 @@
                     this.$$.newTask.focus();
                 },
 
-//                toggleTaskCompletion: function(task) {
-//                    task.completed = ! task.completed;
-//                },
-
                 completeTask: function(task) {
-                    e.preventDefault();
 
-                    var task = this.newTask;
+//                    console.log('complete task' + task.task_name);
 
-                    this.tasks.push(task);
-
-                    this.newTask = {task_name: ''};
-
-                    this.submitted = true;
-
-                    task_name.focus();
-
-                    this.$http.post('api/v1/tasks', task);
+//                    e.preventDefault();
+//
+//                    var task = this.newTask;
+//
+//                    this.tasks.push(task);
+//
+//                    this.newTask = {task_name: ''};
+//
+//                    this.submitted = true;
+//
+//                    task_name.focus();
+//
+                        this.$http.post('api/v1/tasks/@{{ task.task_id }}/complete', task);
                 },
 
                 completeAll: function() {
@@ -221,23 +205,26 @@
                 },
 
                 deleteTask: function(task) {
-                    this.tasks.$remove(task);
 
-                    //console.log('remove task' + task.task_name);
+                    console.log('delete task' + task.task_name);
 
-                    e.preventDefault();
+                    this.$http.post('api/v1/tasks/', task);
 
-                    var task = this.newTask;
-
-                    this.tasks.push(task);
-
-                    this.newTask = {task_name: ''};
-
-                    this.submitted = true;
-
-                    task_name.focus();
-
-                    this.$http.post('api/v1/tasks', task);
+//                    this.tasks.$remove(task);
+//
+//                    e.preventDefault();
+//
+//                    var task = this.newTask;
+//
+//                    this.tasks.push(task);
+//
+//                    this.newTask = {task_name: ''};
+//
+//                    this.submitted = true;
+//
+//                    task_name.focus();
+//
+//                    this.$http.post('api/v1/tasks', task);
                 }
             }
 
